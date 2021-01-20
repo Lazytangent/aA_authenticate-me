@@ -6,6 +6,7 @@ const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 
 const { environment } = require('./config');
+const routes = require('./routes');
 const isProduction = environment === 'production';
 
 const app = express();
@@ -29,3 +30,7 @@ app.use(
     },
   })
 );
+
+app.use(routes);
+
+module.exports = app;
