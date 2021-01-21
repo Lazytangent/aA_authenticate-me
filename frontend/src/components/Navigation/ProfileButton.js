@@ -1,6 +1,8 @@
 const ProfileButton = () => {
   return (
-    <i className="fas fa-user"></i>
+    <li className="navbar__nav-links--navlink">
+      <i className="fas fa-user"></i>
+    </li>
   );
 };
 

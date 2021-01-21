@@ -13,19 +13,25 @@ const Navigation = ({ isLoaded }) => {
   } else {
     sessionLinks = (
       <>
-        <NavLink to="/login">Log In</NavLink>
-        <NavLink to="/signup">Sign Up</NavLink>
+        <li className="navbar__nav-links--navlink">
+          <NavLink to="/login">Log In</NavLink>
+        </li>
+        <li className="navbar__nav-links--navlink">
+          <NavLink to="/signup">Sign Up</NavLink>
+        </li>
       </>
     );
   }
 
   return (
-    <ul className="nav-link">
-      <li>
-        <NavLink to="/" exact>Home</NavLink>
+    <nav className="navbar">
+      <ul className="navbar__nav-links">
+        <li className="navbar__nav-links--navlink">
+          <NavLink to="/" exact>Home</NavLink>
+        </li>
         {isLoaded && sessionLinks}
-      </li>
-    </ul>
+      </ul>
+    </nav>
   )
 };
 
