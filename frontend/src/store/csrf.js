@@ -18,7 +18,7 @@ export async function fetch(url, options = {}) {
     res.data = data;
   }
 
-  if (res.status >= 400) throw res;
+  // if (res.status >= 400) throw res;
 
   return res;
 }
