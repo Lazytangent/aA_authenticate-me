@@ -27,11 +27,13 @@ const LoginFormPage = () => {
 
   return (
     <>
-      <ul className="errors-list">
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
       <form onSubmit={onSubmit} className="form">
         <h3>Login</h3>
+        {
+          errors.length > 0 && <ul className="errors-list">
+            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          </ul>
+        }
         <div className="form__input-group">
           <label className="form__input-group--label">
             Username or Email
