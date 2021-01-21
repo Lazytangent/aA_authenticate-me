@@ -1,7 +1,6 @@
 .navbar {
   padding: 0.25rem;
   display: flex;
-  align-items: flex-end;
   flex-direction: column;
 }
 
@@ -12,9 +11,17 @@
   padding: 0.25rem;
 }
 
+.profile-btn-div {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .navbar__nav-links--navlink {
   padding: 0.25rem;
   font-size: 1.25rem;
 }
 
-
+.profile-dropdown {
+  list-style: none;
+  padding: 1rem;
+}

@@ -12,14 +12,14 @@ const Navigation = ({ isLoaded }) => {
     sessionLinks = <ProfileButton user={sessionUser} />;
   } else {
     sessionLinks = (
-      <>
+      <li className="navbar__nav-links">
         <li className="navbar__nav-links--navlink">
           <NavLink to="/login">Log In</NavLink>
         </li>
         <li className="navbar__nav-links--navlink">
           <NavLink to="/signup">Sign Up</NavLink>
         </li>
-      </>
+      </li>
     );
   }
 
