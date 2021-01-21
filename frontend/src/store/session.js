@@ -35,6 +35,15 @@ export const restoreUser = () => async (dispatch) => {
   return response;
 };
 
+export const registerUser = (user) => async (dispatch) => {
+  const response = await fetch('/api/users', {
+    method: 'POST',
+    body: JSON.stringify(user),
+  });
+  dispatch(setSession(response.data.user));
+  return response;
+};
+
 const initialState = {
   user: null,
 };
