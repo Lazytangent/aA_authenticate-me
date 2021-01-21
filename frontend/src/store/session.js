@@ -44,6 +44,14 @@ export const registerUser = (user) => async (dispatch) => {
   return response;
 };
 
+export const logoutUser = () => async (dispatch) => {
+  const response = await fetch('/api/session', {
+    method: 'DELETE',
+  });
+  dispatch(removeSession());
+  return response;
+};
+
 const initialState = {
   user: null,
 };
