@@ -27,20 +27,29 @@ const LoginFormPage = () => {
   };
 
   return (
-    <form onSubmit={onSubmit} className="form">
+    <>
       <ul className="errors-list">
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
-      <label className="form__input-group">
-        Username or Email
-        <input required className="form__input-group--input-field" type="text" value={credential} onChange={e => setCredential(e.target.value)} />
-      </label>
-      <label className="form__input-group">
-        Password
-        <input required className="form__input-group--input-field" type="password" value={password} onChange={e => setPassword(e.target.value)} />
-      </label>
-      <button type="submit">Login</button>
-    </form>
+      <form onSubmit={onSubmit} className="form">
+        <h3>Login</h3>
+        <div className="form__input-group">
+          <label className="form__input-group--label">
+            Username or Email
+          </label>
+          <input required className="form__input-group--input-field" type="text" value={credential} onChange={e => setCredential(e.target.value)} />
+        </div>
+        <div className="form__input-group">
+          <label className="form__input-group--label">
+            Password
+          </label>
+          <input required className="form__input-group--input-field" type="password" value={password} onChange={e => setPassword(e.target.value)} />
+        </div>
+        <div className="form__button-div">
+          <button className="form__button-div--button" type="submit">Login</button>
+        </div>
+      </form>
+    </>
   );
 };
 
