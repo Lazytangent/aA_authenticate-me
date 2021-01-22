@@ -25,3 +25,8 @@
   list-style: none;
   padding: 1rem;
 }
+
+.auth-btns {
+  list-style: none;
+  display: flex;
+}

@@ -14,12 +14,14 @@ const Navigation = ({ isLoaded }) => {
   } else {
     sessionLinks = (
       <li className="navbar__nav-links">
-        <li className="navbar__nav-links--navlink">
-          <LoginFormModal />
-        </li>
-        <li className="navbar__nav-links--navlink">
-          <NavLink to="/signup">Sign Up</NavLink>
-        </li>
+        <ul className="auth-btns">
+          <li className="navbar__nav-links--navlink">
+            <LoginFormModal />
+          </li>
+          <li className="navbar__nav-links--navlink">
+            <NavLink to="/signup">Sign Up</NavLink>
+          </li>
+        </ul>
       </li>
     );
   }
