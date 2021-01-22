@@ -9,11 +9,11 @@ if (process.env.NODE_ENV === 'production') {
   router.get('/', (req, res) => {
     res.cookie('XSRF-TOKEN', req.csrfToken());
     return res.sendFile(
-      path.resolve(__dirnam, '../../frontend', 'build', 'index.html')
+      path.resolve(__dirname, '../../frontend', 'build', 'index.html')
     );
   });
 
-  router.use(express.statuc(path.resolve('../frontend/build')));
+  router.use(express.static(path.resolve('../frontend/build')));
 
   router.get(/^(?!\/?api).*/, (req, res) => {
     res.cookie('XSRF-TOKEN', req.csrfToken());
