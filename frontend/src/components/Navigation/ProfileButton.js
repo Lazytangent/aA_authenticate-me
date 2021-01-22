@@ -14,19 +14,12 @@ const ProfileButton = ({ user }) => {
 
   useEffect(() => {
     if (!showMenu) return;
-
-    const closeMenu = () => {
-      setShowMenu(false);
-    };
-
+    const closeMenu = () => setShowMenu(false);
     document.addEventListener('click', closeMenu);
-
     return () => document.removeEventListener('click', closeMenu);
   }, [showMenu]);
 
-  const logout = () => {
-    dispatch(logoutUser());
-  };
+  const logout = () => dispatch(logoutUser());
 
   return (
     <li className="navbar__nav-links--navlink">

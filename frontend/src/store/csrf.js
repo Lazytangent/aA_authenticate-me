@@ -11,7 +11,6 @@ export async function fetch(url, options = {}) {
   }
 
   const res = await window.fetch(url, options);
-  console.log(res);
 
   const contentType = res.headers.get('content-type');
   if (contentType && contentType.includes('application/json')) {
