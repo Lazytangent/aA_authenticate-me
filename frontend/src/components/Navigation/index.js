@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
+import SignupFormModal from '../SignupFormModal';
 import './Navigation.css';
 
 const Navigation = ({ isLoaded }) => {
@@ -19,7 +20,7 @@ const Navigation = ({ isLoaded }) => {
             <LoginFormModal />
           </li>
           <li className="navbar__nav-links--navlink">
-            <NavLink to="/signup">Sign Up</NavLink>
+            <SignupFormModal />
           </li>
         </ul>
       </li>
