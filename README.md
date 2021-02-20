@@ -1,4 +1,6 @@
-## [Live Site](https://authenticateme.herokuapp.com/)
+# Express React Template
+
+An Express-React template for building a project with an Express backend and a React-Redux frontend with a PostgreSQL database.
 
 ## Getting an error when you're trying to run the sequelize commands through heroku?
 
