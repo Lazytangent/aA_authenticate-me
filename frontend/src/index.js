@@ -8,14 +8,14 @@ import App from './App';
 import { ModalProvider } from './context/Modal';
 
 import store from './store';
-import { restoreCSRF, fetch } from './store/csrf';
+import { restoreCSRF, csrfFetch } from './store/csrf';
 
 import * as sessionActions from './store/session';
 
 if (process.env.NODE_ENV !== 'production') {
   restoreCSRF();
 
-  window.csrfFetch = fetch;
+  window.csrfFetch = csrfFetch;
   window.store = store;
   window.sessionActions = sessionActions;
 }
