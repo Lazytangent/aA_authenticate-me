@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetch } from './csrf';
+import { csrfFetch } from './csrf';
 
 export const login = createAsyncThunk('session/login', async (user) => {
   const { credential, password } = user;
-  const response = await fetch('/api/session', {
+  const response = await csrfFetch('/api/session', {
     method: 'POST',
     body: JSON.stringify({
       credential,
@@ -14,12 +14,12 @@ export const login = createAsyncThunk('session/login', async (user) => {
 })
 
 export const restoreUser = createAsyncThunk('session/restoreUser', async () => {
-  const response = await fetch('/api/session');
+  const response = await csrfFetch('/api/session');
   return response.data.user;
 });
 
 export const registerUser = createAsyncThunk('session/registerUser', async (user) => {
-  const response = await fetch('/api/users', {
+  const response = await csrfFetch('/api/users', {
     method: 'POST',
     body: JSON.stringify(user),
   });
@@ -27,7 +27,7 @@ export const registerUser = createAsyncThunk('session/registerUser', async (user
 });
 
 export const logoutUser = createAsyncThunk('session/logoutUser', async () => {
-  const response = await fetch('/api/session', {
+  const response = await csrfFetch('/api/session', {
     method: 'DELETE',
   });
   return response;
