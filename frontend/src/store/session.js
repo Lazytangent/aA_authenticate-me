@@ -1,3 +1,4 @@
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetch } from './csrf';
 
 const SET_SESSION = 'session/SET_SESSION';
@@ -16,7 +17,20 @@ const removeSession = () => {
   };
 };
 
-export const login = (user) => async (dispatch) => {
+// export const login = (user) => async (dispatch) => {
+//   const { credential, password } = user;
+//   const response = await fetch('/api/session', {
+//     method: 'POST',
+//     body: JSON.stringify({
+//       credential,
+//       password,
+//     }),
+//   });
+//   dispatch(setSession(response.data.user));
+//   return response;
+// };
+
+export const login = createAsyncThunk('session/login', async (user) => {
   const { credential, password } = user;
   const response = await fetch('/api/session', {
     method: 'POST',
@@ -25,46 +39,88 @@ export const login = (user) => async (dispatch) => {
       password,
     }),
   });
-  dispatch(setSession(response.data.user));
-  return response;
-};
+  return response.data.user;
+})
 
-export const restoreUser = () => async (dispatch) => {
+// export const restoreUser = () => async (dispatch) => {
+//   const response = await fetch('/api/session');
+//   dispatch(setSession(response.data.user));
+//   return response;
+// };
+
+export const restoreUser = createAsyncThunk('session/restoreUser', async () => {
   const response = await fetch('/api/session');
-  dispatch(setSession(response.data.user));
-  return response;
-};
+  return response.data.user;
+});
 
-export const registerUser = (user) => async (dispatch) => {
+// export const registerUser = (user) => async (dispatch) => {
+//   const response = await fetch('/api/users', {
+//     method: 'POST',
+//     body: JSON.stringify(user),
+//   });
+//   dispatch(setSession(response.data.user));
+//   return response;
+// };
+
+export const registerUser = createAsyncThunk('session/registerUser', async (user) => {
   const response = await fetch('/api/users', {
     method: 'POST',
     body: JSON.stringify(user),
   });
-  dispatch(setSession(response.data.user));
-  return response;
-};
+  return response.data.user;
+});
 
-export const logoutUser = () => async (dispatch) => {
+// export const logoutUser = () => async (dispatch) => {
+//   const response = await fetch('/api/session', {
+//     method: 'DELETE',
+//   });
+//   dispatch(removeSession());
+//   return response;
+// };
+
+export const logoutUser = createAsyncThunk('session/logoutUser', async () => {
   const response = await fetch('/api/session', {
     method: 'DELETE',
   });
-  dispatch(removeSession());
   return response;
-};
+});
 
 const initialState = {
   user: null,
 };
 
-const sessionReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case SET_SESSION:
-      return { ...state, user: action.user }
-    case REMOVE_SESSION:
-      return { ...state, user: null };
-    default:
-      return state;
-  }
-};
+const sessionSlice = createSlice({
+  name: 'session',
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(login.fulfilled, (state, action) => {
+        state.user = action.payload;
+      })
+      .addCase(restoreUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+      })
+      .addCase(registerUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+      })
+      .addCase(logoutUser.fulfilled, (state, _action) => {
+        state.user = null;
+      })
+  },
+});
 
-export default sessionReducer;
+// const sessionReducer = (state = initialState, action) => {
+//   switch (action.type) {
+//     case SET_SESSION:
+//       return { ...state, user: action.user }
+//     case REMOVE_SESSION:
+//       return { ...state, user: null };
+//     default:
+//       return state;
+//   }
+// };
+
+// export default sessionReducer;
+
+export default sessionSlice.reducer;
