@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 
-export async function fetch(url, options = {}) {
+export async function csrfFetch(url, options = {}) {
   options.method = options.method || 'GET';
   options.headers = options.headers || {};
 
@@ -12,17 +12,11 @@ export async function fetch(url, options = {}) {
 
   const res = await window.fetch(url, options);
 
-//   const contentType = res.headers.get('content-type');
-//   if (contentType && contentType.includes('application/json')) {
-//     const data = await res.json();
-//     res.data = data;
-//   }
-
   if (res.status >= 400) throw res;
 
   return res;
 }
 
 export function restoreCSRF() {
-  return fetch('/api/csrf/restore');
+  return csrfFetch('/api/csrf/restore');
 }

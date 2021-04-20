@@ -25,23 +25,9 @@ const SignupForm= () => {
         email,
         password,
       };
-      // try {
-      //   await dispatch(registerUser(user));
-      // } catch (e) {
-      //   (async () => {
-      //     e.data = await e.json();
-      //     setErrors(e.data.errors);
-      //   })();
-      // }
       dispatch(registerUser(user))
-        .then(async (res) => {
-          res.data = await res.json();
-          console.log(res);
-          setErrors(res.data.errors)
-        })
         .catch(async (e) => {
           e.data = await e.json();
-          console.log(e);
           setErrors(e.data.errors)
         })
     } else {

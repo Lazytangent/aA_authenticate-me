@@ -21,8 +21,6 @@ const LoginForm = () => {
       credential,
       password,
     };
-    // const res = await dispatch(login(user));
-    // if (res.data && res.data.errors) setErrors(res.data.errors);
     dispatch(login(user))
       .catch(async (err) => {
         err.data = await err.json();
