@@ -38,7 +38,7 @@ export const restoreUser = () => async (dispatch) => {
 };
 
 export const registerUser = (user) => async (dispatch) => {
-  try {
+  // try {
     const response = await fetch('/api/users', {
       method: 'POST',
       body: JSON.stringify(user),
@@ -46,13 +46,13 @@ export const registerUser = (user) => async (dispatch) => {
     response.data = await response.json();
     dispatch(setSession(response.data.user));
     return response;
-  } catch (e) {
-    // return e.json().then((data) => {
-    //   e.data = data;
-    //   throw e;
-    // });
-    throw e;
-  }
+  // } catch (e) {
+  //   // return e.json().then((data) => {
+  //   //   e.data = data;
+  //   //   throw e;
+  //   // });
+  //   throw e;
+  // }
 };
 
 export const logoutUser = () => async (dispatch) => {
