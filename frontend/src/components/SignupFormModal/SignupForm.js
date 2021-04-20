@@ -25,10 +25,13 @@ const SignupForm= () => {
         email,
         password,
       };
-      const res = await dispatch(registerUser(user));
-      if (res.data && res.data.errors) setErrors(res.data.errors);
+      try {
+        await dispatch(registerUser(user));
+      } catch (e) {
+        setErrors(e.data.errors);
+      }
     } else {
-      setErrors((prev) => [...prev, 'Password confirmation field does not match password field.']);
+      setErrors(['Password confimation field must match password field.']);
     }
   };
 
