@@ -12,11 +12,11 @@ export async function fetch(url, options = {}) {
 
   const res = await window.fetch(url, options);
 
-  const contentType = res.headers.get('content-type');
-  if (contentType && contentType.includes('application/json')) {
-    const data = await res.json();
-    res.data = data;
-  }
+//   const contentType = res.headers.get('content-type');
+//   if (contentType && contentType.includes('application/json')) {
+//     const data = await res.json();
+//     res.data = data;
+//   }
 
   if (res.status >= 400) throw res;
 

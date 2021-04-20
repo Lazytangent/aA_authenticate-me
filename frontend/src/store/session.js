@@ -25,29 +25,39 @@ export const login = (user) => async (dispatch) => {
       password,
     }),
   });
+  response.data = await response.json();
   dispatch(setSession(response.data.user));
   return response;
 };
 
 export const restoreUser = () => async (dispatch) => {
   const response = await fetch('/api/session');
+  response.data = await response.json();
   dispatch(setSession(response.data.user));
   return response;
 };
 
 export const registerUser = (user) => async (dispatch) => {
-  const response = await fetch('/api/users', {
-    method: 'POST',
-    body: JSON.stringify(user),
-  });
-  dispatch(setSession(response.data.user));
-  return response;
+  try {
+    const response = await fetch('/api/users', {
+      method: 'POST',
+      body: JSON.stringify(user),
+    });
+    response.data = await response.json();
+    dispatch(setSession(response.data.user));
+    return response;
+  } catch (e) {
+    (async () => {
+
+    })();
+  }
 };
 
 export const logoutUser = () => async (dispatch) => {
   const response = await fetch('/api/session', {
     method: 'DELETE',
   });
+  response.data = await response.json();
   dispatch(removeSession());
   return response;
 };
