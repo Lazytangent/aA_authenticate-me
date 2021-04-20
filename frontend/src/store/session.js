@@ -47,10 +47,11 @@ export const registerUser = (user) => async (dispatch) => {
     dispatch(setSession(response.data.user));
     return response;
   } catch (e) {
-    return e.json().then((data) => {
-      e.data = data;
-      throw e;
-    });
+    // return e.json().then((data) => {
+    //   e.data = data;
+    //   throw e;
+    // });
+    throw e;
   }
 };
 
