@@ -30,6 +30,15 @@ const SignupForm= () => {
       } catch (e) {
         setErrors(e.data.errors);
       }
+      // dispatch(registerUser(user))
+      //   .then((res) => {
+      //     console.log(res);
+      //     setErrors(e.data.errors)
+      //   })
+      //   .catch(async (e) => {
+      //     console.log(e);
+      //     setErrors(e.data.errors)
+      //   })
     } else {
       setErrors(['Password confimation field must match password field.']);
     }
